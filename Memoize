@@ -1,0 +1,16 @@
+function memoize(fn) {
+//create a obeject that store the argument as key and the result as output
+    let memo={};
+    return function(...args) {
+//convert the argument into a string
+        const key=JSON.stringify(args);
+//check key is present or not in object
+        if(key in memo){
+            return memo[key];
+        }
+// cached the result 
+        const result=fn(...args);
+        memo[key]=result;
+        return result;
+    }
+}
